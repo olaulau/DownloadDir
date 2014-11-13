@@ -1,0 +1,12 @@
+cygwin minimal install :
+- time
+- rsync
+- ssh
+et les dépendances recommandées
+
+
+si dans ~/.ssh pas de fichier rsa, créer les clefs avec :
+ssh-keygen -t rsa
+
+puis copier la clef vers le serveur :
+ssh-copy-id -i ~/.ssh/id_rsa.pub <login>@<host>

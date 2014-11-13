@@ -1,0 +1,18 @@
+- évols
+	- déplacement de fichier (jsTree)
+	- comme créer un répertoire : créer un lien symbolique
+
+- sécurisation
+	- shell_exec
+	- filesystem (../ interdit)
+	- tous les passages de paramètres GET & POST, urlencode (vérif espaces, caractères spéciaux ...)
+	
+- ergonomie
+	- design (lignes alternées)
+	- jquery (éviter les écrans intermédiaire avec des fancybox)
+	
+- fonctionnalités
+	- suppression de répertoires (récursive ? cli ?)
+	- vérifier fonctionnement réferer
+	- vérifier comportement en cas de fichier paramétré (truc.exe?machin=stoi)
+	- voir pour récupérer la progression et le nom du fichier avec wget, sinon passer à cURL

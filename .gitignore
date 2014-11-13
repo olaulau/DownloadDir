@@ -1,0 +1,6 @@
+.externalToolBuilders
+.settings
+.buildpath
+.project
+
+includes/config.inc.php
