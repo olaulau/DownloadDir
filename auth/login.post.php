@@ -10,7 +10,6 @@ $password = $_POST["password"];
 
 if(!empty($user) && !empty($password)) {
 	if(isset($auth["users"][$user])) {
-		require_once 'conf.inc.php';
 		$hashed = hash("sha512", $password);
 		if($hashed == $auth["users"][$user]) {
 			Session::set_var("user", $user);

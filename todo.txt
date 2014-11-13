@@ -10,6 +10,7 @@
 - ergonomie
 	- design (lignes alternées)
 	- jquery (éviter les écrans intermédiaire avec des fancybox)
+	- traduction de l'application
 	
 - fonctionnalités
 	- suppression de répertoires (récursive ? cli ?)
