@@ -118,9 +118,11 @@ foreach ($files_raw_data as $file_raw_data) {
 		$size = sizeToString($file_raw_data["size"]);
 	}
 	
-	$actions = '<a href="actions/delete.get.php?subdir='.urlencode($subdir).'&file='.urlencode($file_raw_data["name"]).'">supprimer</a>
+	$actions = '
+	<a href="actions/delete.get.php?subdir='.urlencode($subdir).'&file='.urlencode($file_raw_data["name"]).'">supprimer</a>
 	<a href="actions/rename.get.php?subdir='.urlencode($subdir).'&file='.urlencode($file_raw_data["name"]).'">renommer</a>
-	<a href="actions/move.get.php?subdir='.urlencode($subdir).'&file='.urlencode($file_raw_data["name"]).'">déplacer</a>';
+	<a href="actions/move.get.php?subdir='.urlencode($subdir).'&file='.urlencode($file_raw_data["name"]).'">déplacer</a>
+	';
 	
 	$files_formated_data[] = array(
 			"name" => $name,

@@ -138,3 +138,25 @@ function array_struct_flatten($array, $glue, $parent="") {
 	}
 	return $res;
 }
+
+
+
+function toJstreeObject($tree, $text="", $level=0) {
+	if( count($tree) > 0 ) {
+		ksort($tree);
+		$children = array();
+		foreach($tree as $key => $value) {
+			$children[] = toJstreeObject($value, $key, $level+1);
+		}
+	}
+	else
+		$children = FALSE;
+
+	$res = array(
+			'text' => $text,
+			'state' =>
+			array( 'opened' => true ),
+			'children' => $children,
+	);
+	return $res;
+}
