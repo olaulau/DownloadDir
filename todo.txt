@@ -1,5 +1,4 @@
 - évols
-	- déplacement de fichier (jsTree)
 	- comme créer un répertoire : créer un lien symbolique
 
 - sécurisation
@@ -14,6 +13,7 @@
 	
 - fonctionnalités
 	- suppression de répertoires (récursive ? cli ?)
+	- download through app
 	- vérifier fonctionnement réferer
 	- vérifier comportement en cas de fichier paramétré (truc.exe?machin=stoi)
 	- voir pour récupérer la progression et le nom du fichier avec wget, sinon passer à cURL

@@ -141,21 +141,27 @@ function array_struct_flatten($array, $glue, $parent="") {
 
 
 
-function toJstreeObject($tree, $text="", $level=0) {
+function toJstreeObject($tree, $text="/", $fullPath="", $level=0) {
 	if( count($tree) > 0 ) {
 		ksort($tree);
 		$children = array();
 		foreach($tree as $key => $value) {
-			$children[] = toJstreeObject($value, $key, $level+1);
+			$children[] = toJstreeObject($value, $key, $fullPath.'/'.$key, $level+1);
 		}
 	}
 	else
 		$children = FALSE;
+	
+	$opened = ($level==0);
 
 	$res = array(
+			'id' => rawUrlencode($fullPath),
 			'text' => $text,
 			'state' =>
-			array( 'opened' => true ),
+			array(
+					'opened' => $opened,
+					'selected' => $opened,
+			),
 			'children' => $children,
 	);
 	return $res;

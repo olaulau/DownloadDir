@@ -24,9 +24,9 @@ if(isset($_SESSION["user"])) {
 				<input type="hidden" id="new_subdir" name="new_subdir" value="" size="100"/>
 				<div id="tree" class="demo"></div>
 
-				<input type="hidden" name="subdir" value="<?=$_GET["subdir"]?>">
-				<input type="hidden" name="file" value="<?=$_GET["file"]?>">
-				<input type="hidden" name="redirect" value="<?=$_SERVER["HTTP_REFERER"]?>">
+				<input type="hidden" id="subdir" name="subdir" value="<?=$_GET["subdir"]?>">
+				<input type="hidden" id="file" name="file" value="<?=$_GET["file"]?>">
+				<input type="hidden" id="redirect" name="redirect" value="<?=$_SERVER["HTTP_REFERER"]?>">
 				<button type="submit">Valider</button>
 			</form>
 			
@@ -34,9 +34,19 @@ if(isset($_SESSION["user"])) {
 			<script src="./../jstree/jstree.min.js"></script>
 			
 			<script>
+			// http://stackoverflow.com/a/901144/1248801
+			function getParameterByName(name) {
+			    name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
+			    var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
+			    results = regex.exec(location.search);
+			    return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
+			}
+			
 			$.jstree.defaults.core.themes.variant = "large";
 			$('#tree').jstree
 			({
+				//"plugins" : [ "checkbox", "contextmenu", "dnd", "search", "sort", "state", "types", "unique", "wholerow" ],
+				"plugins" : [ "wholerow" ],
 				'core' :
 				{
 					"multiple" : false,
@@ -47,17 +57,26 @@ if(isset($_SESSION["user"])) {
 					}
 				}
 			});
-			
+
+			$('#tree').on('ready.jstree', function (e, data) {
+				$('#tree').jstree(true).deselect_all(true);
+				var node_to_select = '/' + getParameterByName('subdir');
+				$('#tree').jstree(true).select_node(encodeURIComponent(node_to_select));
+			}).jstree();
+
+
 			$('#tree').on('changed.jstree', function (e, data) {
-			    var tab = [];
-			    var currentNode = data.instance.get_node(data.selected[0]);
-			    tab.unshift(currentNode.text);
-			    var parent;
-			    while( (parent = currentNode.parent) !== "#" ) {
-			    	currentNode = data.instance.get_node(parent);
-			    	tab.unshift(currentNode.text);
-			    }
-			    $('#new_subdir').val(tab.join('/'));
+				var currentNode = data.instance.get_node(data.selected[0]);
+				$('#tree').jstree(true).open_node(currentNode); // click on node open it
+				
+				var tab = [];
+				tab.unshift(currentNode.text);
+				var parent;
+				while( (parent = currentNode.parent) !== "#" ) {
+					currentNode = data.instance.get_node(parent);
+					tab.unshift(currentNode.text);
+				}
+				$('#new_subdir').val(tab.join('/'));
 			});
 			</script>
 			<?php 
