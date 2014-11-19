@@ -10,6 +10,7 @@
 	- design (lignes alternées)
 	- jquery (éviter les écrans intermédiaire avec des fancybox)
 	- traduction de l'application
+	- utiliser twitter bootstrap ?
 	
 - fonctionnalités
 	- suppression de répertoires (récursive ? cli ?)

@@ -2,12 +2,22 @@
 
 
 html, body {
-	margin: 0px 0px;
+	margin: 2px;
+}
+
+body {
+	background-color: #EEE;
 }
 
 table, th, tr, td {
 	border: solid black 1px;
-	padding: 2px;
+	border-collapse: collapse;
+}
+td {
+	padding: 5px;
+}
+table.hidden, table.hidden tr, table.hidden td {
+	border: none;
 }
 
 h1, h2 {
@@ -18,3 +28,14 @@ p.login {
 	text-align: right;
 	margin: 0px 0px;
 }
+
+fieldset {
+	margin: 0 10px;
+	background-color: #DDD;
+}
+
+input {
+	background-color: #EEE;
+	border:1px solid #AAA;
+}
+
