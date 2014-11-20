@@ -42,41 +42,35 @@ require 'auth/user_login_applet.inc.php';
 
 
 
-<fieldset>
-	<legend>actions</legend>
-<?php
 
-// new directory
+<?php
 if(isset($_SESSION["user"])) {
 	?>
+<fieldset>
+	<legend>actions</legend>
+	
+<!-- new directory -->
 <form action="actions/mkdir.post.php" method="post">
 	<label for="new_dir">nouveau répertoire :</label>
-	<input type="text" name="new_dir"/>
+	<input type="text" name="new_dir" size="100" maxlength="256"/>
 	<input type="hidden" name="subdir" value="<?=$subdir?>"/>
-	<button type="submit">Valider</button>
+	<button type="submit">Créer</button>
 </form>
 
 <br/>
-<?php
-}
 
-// download form
-if(isset($_SESSION["user"])) {
-	?>
+<!-- download form -->
 	<form action="actions/download.post.php" method="post">
 		<table>
-			<tr><td>fichier</td> <td><input type="text" name="url" size="100" maxlength="2048"></td> <td rowspan="2"><button type="submit">Valider</button></td> </tr>
+			<tr><td>fichier</td> <td><input type="text" name="url" size="100" maxlength="2048"></td> <td rowspan="2"><button type="submit">Télécharger</button></td> </tr>
 			<tr><td>page (referer, optionnel)</td> <td><input type="text" name="page" size="100" maxlength="2048"></td></tr>
 		</table>
 		<input type="hidden" name="subdir" value="<?=$subdir?>"/>
 	</form>
-	<?php
-}
-
-?>
 </fieldset>
 <br/>
-<?php
+	<?php
+}
 
 
 // fil d'arianne
@@ -122,7 +116,7 @@ foreach ($list as $filename) {
 				"last_modified" => $stat["mtime"],
 				"size" => $stat["size"],
 				"is_directory" => $is_directory,
-				"icon" =>$icon
+				"icon" => $icon
 			);
 	}
 }
@@ -148,22 +142,25 @@ foreach ($files_raw_data as $file_raw_data) {
 	$last_modified = date("d/m/Y H:i:s", $file_raw_data["last_modified"]);
 	$new_subdir = new_subdir($subdir, $file_raw_data["name"]);
 	if($file_raw_data["is_directory"]) {
-		$name = '<a href="index.php?subdir=' . $new_subdir . '"><img src="http://www.d-l.fr' . $file_raw_data["icon"] . '" width=32px", height="32px" />' . $file_raw_data["name"] . "</a>";
+		$icon = '<img src="http://www.d-l.fr' . $file_raw_data["icon"] . '" width=32px", height="32px" />';
+		$name = '<a href="index.php?subdir=' . $new_subdir . '">' . $file_raw_data["name"] . "</a>";
 		$size = "";
 	}
 	else {
 		$url = $base_url . "/" . $new_subdir;
-		$name = '<a href="' . $url . '"><img src="http://www.d-l.fr' . $file_raw_data["icon"] . '" width=32px", height="32px" />' . $file_raw_data["name"] . "</a>";
+		$icon = '<img src="http://www.d-l.fr'.$file_raw_data["icon"].'" width=32px", height="32px" />';
+		$name = '<a href="' . $url . '">' . '' . $file_raw_data["name"] . '</a>';
 		$size = sizeToString($file_raw_data["size"]);
 	}
 	
 	$actions = '
-	<a href="actions/delete.get.php?subdir='.urlencode($subdir).'&file='.urlencode($file_raw_data["name"]).'">supprimer</a>
-	<a href="actions/rename.get.php?subdir='.urlencode($subdir).'&file='.urlencode($file_raw_data["name"]).'">renommer</a>
-	<a href="actions/move.get.php?subdir='.urlencode($subdir).'&file='.urlencode($file_raw_data["name"]).'">déplacer</a>
-	';
+		<a href="actions/delete.get.php?subdir='.urlencode($subdir).'&file='.urlencode($file_raw_data["name"]).'">supprimer</a>
+		<a href="actions/rename.get.php?subdir='.urlencode($subdir).'&file='.urlencode($file_raw_data["name"]).'">renommer</a>
+		<a href="actions/move.get.php?subdir='.  urlencode($subdir).'&file='.urlencode($file_raw_data["name"]).'">déplacer</a>
+		';
 	
 	$files_formated_data[] = array(
+			'icon' => $icon,
 			"name" => $name,
 			"last_modified" => $last_modified,
 			"size" => $size,
@@ -178,7 +175,12 @@ foreach ($files_raw_data as $file_raw_data) {
 	<tr>
 <?php 
 $current_url = new Url();
-$fields = array("name"=>"Nom", "last_modified"=>"Dernière modif", "size"=>"Taille");
+$fields = array(
+		"icon" => '',
+		"name" => "Nom",
+		"last_modified" => "Dernière modif",
+		"size" => "Taille"
+	);
 foreach ($fields as $field_name => $field_label) {
 	$url = clone $current_url;
 	$url->setQueryParameter("sort_field", $field_name);
@@ -191,22 +193,23 @@ foreach ($fields as $field_name => $field_label) {
 	
 }
 if(isset($_SESSION["user"])) {
-	?>		<th>&nbsp;</th><?php 
+	?>	<th>&nbsp;</th><?php 
 }
-
-
 ?>
 	</tr>
+	
+	
 <?php
 foreach ($files_formated_data as $file_formated_data) {
 	?>
 	<tr>
+		<td><?=$file_formated_data["icon"]?></td>
 		<td><?=$file_formated_data["name"]?></td>
 		<td><?=$file_formated_data["last_modified"]?></td>
 		<td><?=$file_formated_data["size"]?></td>
 <?php 
 if(isset($_SESSION["user"])) {
-	?>		<td><?=$file_formated_data["actions"]?></td><?php
+	?>	<td><?=$file_formated_data["actions"]?></td><?php
 }
 ?>
 	</tr>
