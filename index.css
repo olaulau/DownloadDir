@@ -41,3 +41,8 @@ input {
 	border:1px solid #AAA;
 }
 
+.footer {
+	font-size: small;
+	background-color: #FCC;
+	text-align: center;
+}

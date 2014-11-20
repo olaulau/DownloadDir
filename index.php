@@ -1,4 +1,6 @@
 <?php
+$generation_start = microtime(TRUE);
+
 require_once 'includes/ALL.inc.php';
 
 Session::start();
@@ -218,6 +220,15 @@ if(isset($_SESSION["user"])) {
 
 ?>
 </table>
+
+<p class="footer">
+	<?php 
+	$generation_end = microtime(TRUE);
+	$generation_time = $generation_end - $generation_start;
+	$generation_time = round($generation_time*1000);
+	?>
+	page build in <?= $generation_time ?> ms - powered by <a href="https://github.com/olaulau/DownloadDir">DownloadDir</a>
+</p>
 
 </body>
 </html>

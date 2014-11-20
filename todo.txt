@@ -1,5 +1,10 @@
 - évols
 	- comme créer un répertoire : créer un lien symbolique
+		- afficher les destinations des liens symboliques (admin seulement)
+		- interdire les liens pointant :
+			- dans l'arborescence du downloadDir (?)
+			- directement sur un répertoire parent
+			=> doit vraiment pointer ailleurs
 
 - sécurisation
 	- shell_exec
