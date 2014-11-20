@@ -14,6 +14,7 @@ if(isset($_SESSION["user"])) {
 			redirect();
 		}
 		else {
+			echo "destination doesn't exist.";
 			// symlink destination doesn't exist
 			// create it anyway ? does basename work with non-existing path ? does it work with relative path ?
 			// add possibility to create named links ?
