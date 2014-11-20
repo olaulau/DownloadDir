@@ -59,6 +59,14 @@ if(isset($_SESSION["user"])) {
 	<button type="submit">Créer</button>
 </form>
 
+<!-- new symlink -->
+<form action="actions/symlink.post.php" method="post">
+	<label for="new_dir">new symlink :</label>
+	<input type="text" name="destination" size="100" maxlength="2048"/>
+	<input type="hidden" name="subdir" value="<?=$subdir?>"/>
+	<button type="submit">Create</button>
+</form>
+
 <br/>
 
 <!-- download form -->
