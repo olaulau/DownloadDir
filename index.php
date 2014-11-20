@@ -110,15 +110,18 @@ foreach ($list as $filename) {
 			$is_directory = FALSE;
 			$icon = getIcon($filename);
 		}
-			
+		if(is_link($full_filename))
+			$realpath = readlink($full_filename);
+		else
+			$realpath = null;
 		$stat = stat($full_filename);
-		
 		$files_raw_data[] = array(
 				"name" => $filename,
 				"last_modified" => $stat["mtime"],
 				"size" => $stat["size"],
 				"is_directory" => $is_directory,
-				"icon" => $icon
+				"icon" => $icon,
+				'realpath' => $realpath,
 			);
 	}
 }
@@ -160,13 +163,15 @@ foreach ($files_raw_data as $file_raw_data) {
 		<a href="actions/rename.get.php?subdir='.urlencode($subdir).'&file='.urlencode($file_raw_data["name"]).'">renommer</a>
 		<a href="actions/move.get.php?subdir='.  urlencode($subdir).'&file='.urlencode($file_raw_data["name"]).'">déplacer</a>
 		';
+	$realpath = ( empty($file_raw_data['realpath']) ? '' : '-> '.$file_raw_data['realpath'] );
 	
 	$files_formated_data[] = array(
 			'icon' => $icon,
 			"name" => $name,
 			"last_modified" => $last_modified,
 			"size" => $size,
-			"actions" => $actions
+			"actions" => $actions,
+			'realpath' => $realpath,
 		);
 }
 
@@ -195,7 +200,7 @@ foreach ($fields as $field_name => $field_label) {
 	
 }
 if(isset($_SESSION["user"])) {
-	?>	<th>&nbsp;</th><?php 
+	?>	<th>&nbsp;</th><th>&nbsp;</th><?php 
 }
 ?>
 	</tr>
@@ -211,7 +216,10 @@ foreach ($files_formated_data as $file_formated_data) {
 		<td><?=$file_formated_data["size"]?></td>
 <?php 
 if(isset($_SESSION["user"])) {
-	?>	<td><?=$file_formated_data["actions"]?></td><?php
+	?>
+		<td><?=$file_formated_data["actions"]?></td>
+		<td><?=$file_formated_data["realpath"]?></td>
+	<?php
 }
 ?>
 	</tr>
