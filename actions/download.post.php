@@ -19,12 +19,12 @@ if(isset($_SESSION["user"])) {
 		}
 		else {
 			echo "<pre> $command </pre>";
-			echo "DL termine. ret code : $ret_code <br/>";
+			echo "DL finished. ret code : $ret_code <br/>";
 			echo "output : <pre>" . var_export($output, TRUE) . "</pre>";
 		}
 	}
 	else {
-		echo "pas d'URL spécifiee";
+		echo L::actions_parameter_problem . '.';
 		exit;
 	}
 	

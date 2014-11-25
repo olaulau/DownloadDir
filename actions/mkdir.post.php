@@ -12,7 +12,7 @@ if(isset($_SESSION["user"])) {
 		redirect();
 	}
 	else {
-		//pb  de paramètres
+		echo L::actions_parameter_problem . '.';
 	}
 	
 }

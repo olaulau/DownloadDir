@@ -3,6 +3,7 @@ require_once '../includes/ALL.inc.php';
 
 Session::start();
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -20,14 +21,14 @@ if(isset($_SESSION["user"])) {
 		if(file_exists($full_file)) {
 			?>
 			<form action="move.post.php" method="post">
-				deplacer vers :<br/>
+				<?= L::actions_move_to ?> :<br/>
 				<input type="hidden" id="new_subdir" name="new_subdir" value="" size="100"/>
 				<div id="tree" class="demo"></div>
 
 				<input type="hidden" id="subdir" name="subdir" value="<?=$_GET["subdir"]?>">
 				<input type="hidden" id="file" name="file" value="<?=$_GET["file"]?>">
 				<input type="hidden" id="redirect" name="redirect" value="<?=$_SERVER["HTTP_REFERER"]?>">
-				<button type="submit">Valider</button>
+				<button type="submit"><?= L::common_submit_button ?></button>
 			</form>
 			
 			<script src="./../js/jquery-2.1.1.min.js"></script>
@@ -82,11 +83,11 @@ if(isset($_SESSION["user"])) {
 			<?php 
 		}
 		else {
-			echo "n'existe pas. bug ?";
+			echo L::actions_doesnt_exist;
 		}
 	}
 	else {
-		echo "pb de parametre.";
+		echo L::actions_parameter_problem;
 	}
 	
 }

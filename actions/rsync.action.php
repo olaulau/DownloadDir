@@ -14,7 +14,7 @@ if(isset($_SESSION["user"])) {
 	}
 	else {
 		echo "<pre> $command </pre>";
-		echo "downloads_push termine. ret code : $ret_code <br/>";
+		echo "downloads_push finished. ret code : $ret_code <br/>";
 		echo "output : <pre>" . var_export($output, TRUE) . "</pre>";
 	}
 }

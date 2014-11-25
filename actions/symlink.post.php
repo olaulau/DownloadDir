@@ -14,14 +14,14 @@ if(isset($_SESSION["user"])) {
 			redirect();
 		}
 		else {
-			echo "destination doesn't exist.";
+			echo L::actions_dest_doesnt_exist . '.';
 			// symlink destination doesn't exist
 			// create it anyway ? does basename work with non-existing path ? does it work with relative path ?
 			// add possibility to create named links ?
 		}
 	}
 	else {
-		//pb  de paramètres
+		echo L::actions_parameter_problem;
 	}
 	
 }

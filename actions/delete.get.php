@@ -18,11 +18,11 @@ if(isset($_SESSION["user"])) {
 			redirect();
 		}
 		else {
-			echo "n'existe pas. bug ?";
+			echo L::actions_doesnt_exist;
 		}
 	}
 	else {
-		echo "pb de parametre.";
+		echo L::actions_parameter_problem . '.';
 	}
 	
 }
