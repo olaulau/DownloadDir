@@ -9,28 +9,19 @@ $password = $_POST["password"];
 // echo "$user $password";
 
 if(!empty($user) && !empty($password)) {
-	if(isset($auth["users"][$user])) {
-		$hashed = hash("sha512", $password);
-		if($hashed == $auth["users"][$user]) {
-			Session::set_var("user", $user);
-			// 		echo "OK !";
-			redirect($_POST["redirect"]);
-		}
-		else {
-			echo "NOP :-/";
-			echo "password mismatch";
-			sleep(3);
-			//redirection écran login avec message
-		}
+	$hashed = hash("sha512", $password);
+	if(isset($auth["users"][$user])  &&  $hashed == $auth["users"][$user]) {
+		Session::set_var("user", $user);
+		// 	echo "OK !";
+		redirect($_POST["redirect"]);
 	}
 	else {
-		echo "NOP :-/";
-		echo "utilisateur inconnu";
+		echo L::auth_bad_login;
 		sleep(3);
-		//redirection écran login avec message
+		// redirect to login screen with a message
 	}
 }
 else {
 	// pb paramètres
-	echo "champs non renseignés";
+	echo L::common_missing_informations;
 }

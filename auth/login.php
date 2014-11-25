@@ -6,7 +6,7 @@ Session::start();
 
 <html>
 <head>
-	<title>Login</title>
+	<title></title>
 	<script type="text/javascript" src="../js/sha.js"></script>
 	<script type="text/javascript" src="../js/jquery-2.0.3.min.js"></script>
 	<script type="text/javascript" src="login.js"></script>
@@ -16,18 +16,18 @@ Session::start();
 
 <?php 
 if(!empty($_SESSION["user"])) {
-	?>Vous êtes déjà authentifié.<?php
+	echo L::auth_already_authed_label . '.';
 }
 else {
 	?>
 	<form action="login.post.php" method="post">
 		<table>
-			<tr><td>identifiant :</td><td><input type="text" name="user" id="user"></td></tr>
-			<tr><td>mot de passe :</td><td><input type="password" id="password"></td></tr>
+			<tr><td><?= L::auth_login_label ?> :</td><td><input type="text" name="user" id="user"></td></tr>
+			<tr><td><?= L::auth_password_label ?> :</td><td><input type="password" id="password"></td></tr>
 		</table>
 		<input type="hidden" name="password" id="password_hashed">
 		<input type="hidden" name="redirect" value="<?=$_SERVER["HTTP_REFERER"]?>">
-		<button type="reset">Effacer</button> <button type="submit" id="valider">Valider</button>
+		<button type="reset"><?=L::common_reset_button ?></button> <button type="submit" id="valider"><?=L::common_submit_button ?></button>
 	</form>
 	<?php
 }

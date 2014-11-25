@@ -8,9 +8,9 @@ if(!empty($_SESSION["user"])) {
 // 	unset($_SESSION["user"]);
 	Session::unset_var("user");
 // 	echo "OK !";
-	// redirection avec récup réferrer
+	// redirect with the use of referrer
 	redirect();
 }
 else {
-	//pas authentifié
+	// not authenticated
 }
