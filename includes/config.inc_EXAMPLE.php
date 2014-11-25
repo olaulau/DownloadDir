@@ -1,5 +1,6 @@
 <?php
 
+$conf['title'] = 'Downloads';
 $base_dir = "/home/user/downloads/";
 $base_url = "http://localhost/downloads";
 $download_push_command = 'PATH=$PATH:/usr/bin && . /home/user/BIN/downloads_push.sh';

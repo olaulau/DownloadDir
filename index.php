@@ -12,7 +12,7 @@ $subdir = isset($_GET["subdir"]) ? $_GET["subdir"] : "";
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-	<title>downloads</title>
+	<title><?= $conf['title'] ?></title>
 	<link href="index.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
@@ -84,7 +84,7 @@ if(isset($_SESSION["user"])) {
 
 
 // fil d'arianne
-?><h1><a href="./">Downloads</a></h1><?php
+?><h1><a href="./"><?= $conf['title'] ?></a></h1><?php
 $directories = explode("/", $subdir);
 $current_dirs = array();
 foreach ($directories as $directory) {
