@@ -4,3 +4,4 @@
 .project
 
 includes/config.inc.php
+lang/cache/
