@@ -15,3 +15,5 @@ key features :
 	- run an rsync script to deploy the directory to mirrors
 - file listing
 	- act as Apache autoindex when unauthenticated
+- global
+	- fully internationalized (english and french supported)
