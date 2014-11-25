@@ -25,7 +25,7 @@ $subdir = isset($_GET["subdir"]) ? $_GET["subdir"] : "";
 if(isset($_SESSION["user"])) {
 	?>
 	<form action="actions/rsync.action.php" method="get">
-		<button type="submit">rsync with NAS's</button>
+		<button type="submit"><?= L::admin_rsync_button; ?></button>
 	</form>
 	<?php
 }
@@ -49,22 +49,22 @@ require 'auth/user_login_applet.inc.php';
 if(isset($_SESSION["user"])) {
 	?>
 <fieldset>
-	<legend>actions</legend>
+	<legend><?= L::admin_actions_legend ?></legend>
 	
 <!-- new directory -->
 <form action="actions/mkdir.post.php" method="post">
-	<label for="new_dir">nouveau répertoire :</label>
+	<label for="new_dir"><?= L::admin_new_dir_label ?> :</label>
 	<input type="text" name="new_dir" size="100" maxlength="256"/>
 	<input type="hidden" name="subdir" value="<?=$subdir?>"/>
-	<button type="submit">Créer</button>
+	<button type="submit"><?= L::admin_create_button ?></button>
 </form>
 
 <!-- new symlink -->
 <form action="actions/symlink.post.php" method="post">
-	<label for="new_dir">new symlink :</label>
+	<label for="new_dir"><?= L::admin_new_symlink_label ?> :</label>
 	<input type="text" name="destination" size="100" maxlength="2048"/>
 	<input type="hidden" name="subdir" value="<?=$subdir?>"/>
-	<button type="submit">Create</button>
+	<button type="submit"><?= L::admin_create_button ?></button>
 </form>
 
 <br/>
@@ -72,8 +72,8 @@ if(isset($_SESSION["user"])) {
 <!-- download form -->
 	<form action="actions/download.post.php" method="post">
 		<table>
-			<tr><td>fichier</td> <td><input type="text" name="url" size="100" maxlength="2048"></td> <td rowspan="2"><button type="submit">Télécharger</button></td> </tr>
-			<tr><td>page (referer, optionnel)</td> <td><input type="text" name="page" size="100" maxlength="2048"></td></tr>
+			<tr><td><?= L::admin_file_url_label ?></td> <td><input type="text" name="url" size="100" maxlength="2048"></td> <td rowspan="2"><button type="submit"><?= L::admin_download_button ?></button></td> </tr>
+			<tr><td><?= L::admin_referer_label ?></td> <td><input type="text" name="page" size="100" maxlength="2048"></td></tr>
 		</table>
 		<input type="hidden" name="subdir" value="<?=$subdir?>"/>
 	</form>
@@ -83,7 +83,7 @@ if(isset($_SESSION["user"])) {
 }
 
 
-// fil d'arianne
+// breadcrumb
 ?><h1><a href="./"><?= $conf['title'] ?></a></h1><?php
 $directories = explode("/", $subdir);
 $current_dirs = array();
@@ -104,7 +104,7 @@ while($filename = $dir->read()) {
 }
 
 
-// données brutes
+// raw data's
 $files_raw_data = array();
 foreach ($list as $filename) {
 	if(!in_array($filename, $exclude)) {
@@ -135,7 +135,7 @@ foreach ($list as $filename) {
 }
 
 
-// tri
+// sorting
 $sort_field = isset($_GET["sort_field"]) ? $_GET["sort_field"] : "name";
 $sort_order = isset($_GET["sort_order"]) ? $_GET["sort_order"] : "ASC";
 
@@ -149,7 +149,7 @@ if($sort_order == "DESC")
 	$files_raw_data = array_reverse($files_raw_data);
 
 
-// formatage données
+// formating data's
 $files_formated_data = array();
 foreach ($files_raw_data as $file_raw_data) {
 	$last_modified = date("d/m/Y H:i:s", $file_raw_data["last_modified"]);
@@ -167,9 +167,9 @@ foreach ($files_raw_data as $file_raw_data) {
 	}
 	
 	$actions = '
-		<a href="actions/delete.get.php?subdir='.urlencode($subdir).'&file='.urlencode($file_raw_data["name"]).'">supprimer</a>
-		<a href="actions/rename.get.php?subdir='.urlencode($subdir).'&file='.urlencode($file_raw_data["name"]).'">renommer</a>
-		<a href="actions/move.get.php?subdir='.  urlencode($subdir).'&file='.urlencode($file_raw_data["name"]).'">déplacer</a>
+		<a href="actions/delete.get.php?subdir='.urlencode($subdir).'&file='.urlencode($file_raw_data["name"]).'">'.L::admin_delete_action.'</a>
+		<a href="actions/rename.get.php?subdir='.urlencode($subdir).'&file='.urlencode($file_raw_data["name"]).'">'.L::admin_rename_action.'</a>
+		<a href="actions/move.get.php?subdir='.  urlencode($subdir).'&file='.urlencode($file_raw_data["name"]).'">'.L::admin_move_action.'</a>
 		';
 	$realpath = ( empty($file_raw_data['realpath']) ? '' : '-> '.$file_raw_data['realpath'] );
 	
@@ -184,7 +184,7 @@ foreach ($files_raw_data as $file_raw_data) {
 }
 
 		
-// affichage
+// display
 ?>
 <table>
 	<tr>
@@ -192,9 +192,9 @@ foreach ($files_raw_data as $file_raw_data) {
 $current_url = new Url();
 $fields = array(
 		"icon" => '',
-		"name" => "Nom",
-		"last_modified" => "Dernière modif",
-		"size" => "Taille"
+		"name" => L::table_name_header,
+		"last_modified" => L::table_last_modified_header,
+		"size" => L::table_size_header
 	);
 foreach ($fields as $field_name => $field_label) {
 	$url = clone $current_url;
@@ -242,8 +242,9 @@ if(isset($_SESSION["user"])) {
 	$generation_end = microtime(TRUE);
 	$generation_time = $generation_end - $generation_start;
 	$generation_time = round($generation_time*1000);
+	
+	echo L::footer_page_build . ' ' . $generation_time . ' ms - ' . L::footer_powered_by . ' <a href="https://github.com/olaulau/DownloadDir">DownloadDir</a>';
 	?>
-	page build in <?= $generation_time ?> ms - powered by <a href="https://github.com/olaulau/DownloadDir">DownloadDir</a>
 </p>
 
 </body>
