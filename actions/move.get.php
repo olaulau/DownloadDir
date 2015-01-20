@@ -11,6 +11,7 @@ Session::start();
 	<title></title>
 	<style></style>
 	<link rel="stylesheet" href="./../jstree/themes/default/style.min.css" />
+	<link href="../index.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
 

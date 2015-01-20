@@ -8,9 +8,10 @@ Session::start();
 <head>
 	<title></title>
 	<script type="text/javascript" src="../js/sha.js"></script>
-	<script type="text/javascript" src="../js/jquery-2.0.3.min.js"></script>
+	<script type="text/javascript" src="../js/jquery-2.1.1.min.js"></script>
 	<script type="text/javascript" src="login.js"></script>
 	<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+	<link href="../index.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
 
