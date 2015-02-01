@@ -208,7 +208,7 @@ foreach ($fields as $field_name => $field_label) {
 	
 }
 if(isset($_SESSION["user"])) {
-	?>	<th>&nbsp;</th><th>&nbsp;</th><?php 
+	?>	<th>&nbsp;</th><?php 
 }
 ?>
 	</tr>
@@ -219,14 +219,23 @@ foreach ($files_formated_data as $file_formated_data) {
 	?>
 	<tr>
 		<td><?=$file_formated_data["icon"]?></td>
-		<td><?=$file_formated_data["name"]?></td>
+		<td><?=$file_formated_data["name"]?>
+<?php 
+if(isset($_SESSION["user"])) {
+	if(!empty($file_formated_data["realpath"])) {
+		?>
+			<br/> <?=$file_formated_data["realpath"]?>
+		<?php
+	}
+}
+?>
+		</td>
 		<td><?=$file_formated_data["last_modified"]?></td>
 		<td><?=$file_formated_data["size"]?></td>
 <?php 
 if(isset($_SESSION["user"])) {
 	?>
 		<td><?=$file_formated_data["actions"]?></td>
-		<td><?=$file_formated_data["realpath"]?></td>
 	<?php
 }
 ?>
