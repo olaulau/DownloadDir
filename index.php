@@ -14,9 +14,13 @@ $subdir = isset($_GET["subdir"]) ? $_GET["subdir"] : "";
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 	<title><?= $conf['title'] ?></title>
 	<link href="index.css" rel="stylesheet" type="text/css" />
+	<link href="js/jquery-ui/jquery-ui.min.css" rel="stylesheet">
+	<link href="js/jquery-ui/themes/smoothness/theme.css" rel="stylesheet">
 </head>
 <body>
-
+<script src="./js/jquery-2.1.1.min.js"></script>
+<script src="js/jquery-ui/jquery-ui.min.js"></script>
+<script src="index.js"></script>
 
 <table width="100%" class="hidden"><tr>
 <td width="50%">
@@ -167,9 +171,12 @@ foreach ($files_raw_data as $file_raw_data) {
 	}
 	
 	$actions = '
-		<a href="actions/delete.get.php?subdir='.urlencode($subdir).'&file='.urlencode($file_raw_data["name"]).'"><img src="images/delete.svg" width="32" height="32" alt="'.L::admin_delete_action.'" title="'.L::admin_delete_action.'"/></a>
-		<a href="actions/rename.get.php?subdir='.urlencode($subdir).'&file='.urlencode($file_raw_data["name"]).'"><img src="images/rename.svg" width="32" height="32" alt="'.L::admin_rename_action.'" title="'.L::admin_rename_action.'"/></a>
-		<a href="actions/move.get.php?subdir='.  urlencode($subdir).'&file='.urlencode($file_raw_data["name"]).'"><img src="images/move.svg" width="32" height="32" alt="'.L::admin_move_action.'" title="'.L::admin_move_action.'"/></a>
+		<a href="actions/delete.get.php?subdir='.urlencode($subdir).'&file='.urlencode($file_raw_data["name"]).'" class="dialog_confirm">
+			<img src="images/delete.svg" width="32" height="32" alt="'.L::admin_delete_action.'" title="'.L::admin_delete_action.'"/></a>
+		<a href="actions/rename.get.php?subdir='.urlencode($subdir).'&file='.urlencode($file_raw_data["name"]).'">
+			<img src="images/rename.svg" width="32" height="32" alt="'.L::admin_rename_action.'" title="'.L::admin_rename_action.'"/></a>
+		<a href="actions/move.get.php?subdir='.  urlencode($subdir).'&file='.urlencode($file_raw_data["name"]).'">
+			<img src="images/move.svg" width="32" height="32" alt="'.L::admin_move_action.'" title="'.L::admin_move_action.'"/></a>
 		';
 	$realpath = ( empty($file_raw_data['realpath']) ? '' : '-> '.$file_raw_data['realpath'] );
 	
@@ -255,6 +262,12 @@ if(isset($_SESSION["user"])) {
 	echo L::footer_page_build . ' ' . $generation_time . ' ms - ' . L::footer_powered_by . ' <a href="https://github.com/olaulau/DownloadDir">DownloadDir</a>';
 	?>
 </p>
+
+
+
+<div id="dialog" title="<?=L::admin_confirm_title ?>">
+	<p><?= L::admin_delete_confirm ?></p>
+</div>
 
 </body>
 </html>
