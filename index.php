@@ -8,40 +8,9 @@ Session::start();
 $subdir = isset($_GET["subdir"]) ? $_GET["subdir"] : "";
 ?>
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head>
-	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-	<title><?= $conf['title'] ?></title>
-	<link href="index.css" rel="stylesheet" type="text/css" />
-	<link href="js/jquery-ui/jquery-ui.min.css" rel="stylesheet">
-	<link href="js/jquery-ui/themes/smoothness/theme.css" rel="stylesheet">
-</head>
-<body>
-<script src="./js/jquery-2.1.1.min.js"></script>
-<script src="js/jquery-ui/jquery-ui.min.js"></script>
-<script src="index.js"></script>
-
-<table width="100%" class="hidden"><tr>
-<td width="50%">
 <?php
-// rsync button
-if(isset($_SESSION["user"])) {
-	?>
-	<form action="actions/rsync.action.php" method="get">
-		<button type="submit"><?= L::admin_rsync_button; ?></button>
-	</form>
-	<?php
-}
+require_once "header.inc.php";
 ?>
-</td>
-
-<td width="50%">
-<?php 
-require 'auth/user_login_applet.inc.php';
-?>
-</td>
-</tr></table>
 
 
 
@@ -98,7 +67,7 @@ foreach ($directories as $directory) {
 }
 echo "<h2> / " . implode(" / ", $liens) . "</h2>
 <br/><br/>";
-if(isset($conf['debug'])) echo "end of breadcrumbs <br/>";
+if($conf['debug'] === TRUE) echo "end of breadcrumbs <br/>";
 
 
 // listing
@@ -110,7 +79,7 @@ if($dir === FALSE) {
 while($filename = $dir->read()) {
 	$list[] = $filename;
 }
-if(isset($conf['debug'])) echo "end of listing <br/>";
+if($conf['debug'] === TRUE) echo "end of listing <br/>";
 
 
 // raw data's
@@ -142,7 +111,7 @@ foreach ($list as $filename) {
 			);
 	}
 }
-if(isset($conf['debug'])) echo "end of raw datas <br/>";
+if($conf['debug'] === TRUE) echo "end of raw datas <br/>";
 
 
 // sorting
@@ -157,7 +126,7 @@ else {
 }
 if($sort_order == "DESC")
 	$files_raw_data = array_reverse($files_raw_data);
-if(isset($conf['debug'])) echo "end of sorting <br/>";
+if($conf['debug'] === TRUE) echo "end of sorting <br/>";
 
 
 // formating data's
@@ -196,7 +165,7 @@ foreach ($files_raw_data as $file_raw_data) {
 			'realpath' => $realpath,
 		);
 }
-if(isset($conf['debug'])) echo "end of formating <br/>";
+if($conf['debug'] === TRUE) echo "end of formating <br/>";
 
 		
 // display
@@ -261,21 +230,16 @@ if(isset($_SESSION["user"])) {
 ?>
 </table>
 
-<p class="footer">
-	<?php 
-	$generation_end = microtime(TRUE);
-	$generation_time = $generation_end - $generation_start;
-	$generation_time = round($generation_time*1000);
-	
-	echo L::footer_page_build . ' ' . $generation_time . ' ms - ' . L::footer_powered_by . ' <a href="https://github.com/olaulau/DownloadDir">DownloadDir</a>';
-	?>
-</p>
-
-
 
 <div id="dialog" title="<?=L::admin_confirm_title ?>">
 	<p><?= L::admin_delete_confirm ?></p>
 </div>
+
+
+<?php
+require_once "footer.inc.php";
+?>
+
 
 </body>
 </html>
