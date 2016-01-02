@@ -1,24 +1,10 @@
 <?php
-$generation_start = microtime(TRUE);
+require_once "header.inc.php";
 
-require_once 'includes/ALL.inc.php';
-
-Session::start();
 
 $subdir = isset($_GET["subdir"]) ? $_GET["subdir"] : "";
-?>
-
-<?php
-require_once "header.inc.php";
-?>
 
 
-
-
-
-
-
-<?php
 if(isset($_SESSION["user"])) {
 	?>
 <fieldset>

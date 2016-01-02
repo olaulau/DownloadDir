@@ -1,3 +1,11 @@
+<?php
+$generation_start = microtime(TRUE);
+
+require_once 'includes/ALL.inc.php';
+
+Session::start();
+?>
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -27,8 +35,11 @@ if(isset($_SESSION["user"])) {
 </td>
 
 <td width="50%">
-<?php 
-require 'auth/user_login_applet.inc.php';
-?>
+<div style="float: right; border: none;">
+	<span>search</span>
+	<?php 
+	require 'auth/user_login_applet.inc.php';
+	?>
+</div>
 </td>
 </tr></table>
