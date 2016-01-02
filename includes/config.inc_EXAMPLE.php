@@ -1,5 +1,6 @@
 <?php
 
+$conf['debug'] = FALSE;
 $conf['title'] = 'Downloads';
 $base_dir = "/home/user/downloads/";
 $base_url = "http://localhost/downloads";

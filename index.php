@@ -98,14 +98,19 @@ foreach ($directories as $directory) {
 }
 echo "<h2> / " . implode(" / ", $liens) . "</h2>
 <br/><br/>";
+if(isset($conf['debug'])) echo "end of breadcrumbs <br/>";
 
 
 // listing
 $current_dir = $base_dir . "/" . $subdir;
 $dir = dir($current_dir);
+if($dir === FALSE) {
+	die("ERROR : directory not found. ");
+}
 while($filename = $dir->read()) {
 	$list[] = $filename;
 }
+if(isset($conf['debug'])) echo "end of listing <br/>";
 
 
 // raw data's
@@ -137,6 +142,7 @@ foreach ($list as $filename) {
 			);
 	}
 }
+if(isset($conf['debug'])) echo "end of raw datas <br/>";
 
 
 // sorting
@@ -151,6 +157,7 @@ else {
 }
 if($sort_order == "DESC")
 	$files_raw_data = array_reverse($files_raw_data);
+if(isset($conf['debug'])) echo "end of sorting <br/>";
 
 
 // formating data's
@@ -189,6 +196,7 @@ foreach ($files_raw_data as $file_raw_data) {
 			'realpath' => $realpath,
 		);
 }
+if(isset($conf['debug'])) echo "end of formating <br/>";
 
 		
 // display
