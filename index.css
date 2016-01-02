@@ -26,9 +26,13 @@ h1, h2 {
 	display: inline;
 }
 
-p.login {
-	text-align: right;
-	margin: 0px 0px;
+.right_applet {
+	float: right;
+	border: none;
+}
+
+form {
+	display: inline;
 }
 
 fieldset {

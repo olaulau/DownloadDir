@@ -35,8 +35,13 @@ if(isset($_SESSION["user"])) {
 </td>
 
 <td width="50%">
-<div style="float: right; border: none;">
-	<span>search</span>
+<div class="right_applet">
+	<span>
+		<form action="search.php" method="get" name="search">
+			<input type="text" name="query" value="<?= L::header_search_action; ?>"></input>
+<!-- 			<button type="submit">envoyer</button> -->
+		</form>
+	</span>
 	<?php 
 	require 'auth/user_login_applet.inc.php';
 	?>
