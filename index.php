@@ -121,13 +121,13 @@ foreach ($files_raw_data as $file_raw_data) {
 	$last_modified = date("d/m/Y H:i:s", $file_raw_data["last_modified"]);
 	$new_subdir = new_subdir($subdir, $file_raw_data["name"]);
 	if($file_raw_data["is_directory"]) {
-		$icon = '<img src="http://www.d-l.fr' . $file_raw_data["icon"] . '" width=32px", height="32px" />';
+		$icon = '<img src="' . $conf['icon_base_url'] . $file_raw_data["icon"] . '" width=32px", height="32px" />';
 		$name = '<a href="index.php?subdir=' . $new_subdir . '">' . $file_raw_data["name"] . "</a>";
 		$size = "";
 	}
 	else {
 		$url = $base_url . "/" . $new_subdir;
-		$icon = '<img src="http://www.d-l.fr'.$file_raw_data["icon"].'" width=32px", height="32px" />';
+		$icon = '<img src="' . $conf['icon_base_url'] . $file_raw_data["icon"].'" width=32px", height="32px" />';
 		$name = '<a href="' . $url . '">' . '' . $file_raw_data["name"] . '</a>';
 		$size = sizeToString($file_raw_data["size"]);
 	}

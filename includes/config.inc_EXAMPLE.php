@@ -20,6 +20,7 @@ $exclude = array(
 	);
 
 
+$conf['icon_base_url'] = 'http://domain.fr';
 $conf["directory_icon"] = "/downloads/indexoverride/dir.png";
 $conf["default_icon"] = "/downloads/indexoverride/default.png";
 $conf["icons"] = array(
