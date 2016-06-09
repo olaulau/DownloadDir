@@ -116,6 +116,7 @@ if($conf['debug'] === TRUE) echo "end of sorting <br/>";
 
 
 // formating data's
+$sum_of_files_size = 0;
 $files_formated_data = array();
 foreach ($files_raw_data as $file_raw_data) {
 	$last_modified = date("d/m/Y H:i:s", $file_raw_data["last_modified"]);
@@ -130,6 +131,7 @@ foreach ($files_raw_data as $file_raw_data) {
 		$icon = '<img src="' . $conf['icon_base_url'] . $file_raw_data["icon"].'" width=32px", height="32px" />';
 		$name = '<a href="' . $url . '">' . '' . $file_raw_data["name"] . '</a>';
 		$size = sizeToString($file_raw_data["size"]);
+		$sum_of_files_size += $file_raw_data["size"];
 	}
 	
 	$actions = '
@@ -143,13 +145,13 @@ foreach ($files_raw_data as $file_raw_data) {
 	$realpath = ( empty($file_raw_data['realpath']) ? '' : '-> '.$file_raw_data['realpath'] );
 	
 	$files_formated_data[] = array(
-			'icon' => $icon,
-			"name" => $name,
-			"last_modified" => $last_modified,
-			"size" => $size,
-			"actions" => $actions,
-			'realpath' => $realpath,
-		);
+		'icon' => $icon,
+		"name" => $name,
+		"last_modified" => $last_modified,
+		"size" => $size,
+		"actions" => $actions,
+		'realpath' => $realpath,
+	);
 }
 if($conf['debug'] === TRUE) echo "end of formating <br/>";
 
@@ -161,11 +163,11 @@ if($conf['debug'] === TRUE) echo "end of formating <br/>";
 <?php 
 $current_url = new Url();
 $fields = array(
-		"icon" => '',
-		"name" => L::table_name_header,
-		"last_modified" => L::table_last_modified_header,
-		"size" => L::table_size_header
-	);
+	"icon" => '',
+	"name" => L::table_name_header,
+	"last_modified" => L::table_last_modified_header,
+	"size" => L::table_size_header
+);
 foreach ($fields as $field_name => $field_label) {
 	$url = clone $current_url;
 	$url->setQueryParameter("sort_field", $field_name);
@@ -190,30 +192,56 @@ foreach ($files_formated_data as $file_formated_data) {
 	<tr>
 		<td><?=$file_formated_data["icon"]?></td>
 		<td><?=$file_formated_data["name"]?>
-<?php 
-if(isset($_SESSION["user"])) {
-	if(!empty($file_formated_data["realpath"])) {
+	<?php 
+	if(isset($_SESSION["user"])) {
+		if(!empty($file_formated_data["realpath"])) {
+			?>
+				<br/> <?=$file_formated_data["realpath"]?>
+			<?php
+		}
+	}
+	?>
+			</td>
+			<td><?=$file_formated_data["last_modified"]?></td>
+			<td><?=$file_formated_data["size"]?></td>
+	<?php 
+	if(isset($_SESSION["user"])) {
 		?>
-			<br/> <?=$file_formated_data["realpath"]?>
+			<td><?=$file_formated_data["actions"]?></td>
 		<?php
 	}
-}
-?>
-		</td>
-		<td><?=$file_formated_data["last_modified"]?></td>
-		<td><?=$file_formated_data["size"]?></td>
-<?php 
-if(isset($_SESSION["user"])) {
 	?>
-		<td><?=$file_formated_data["actions"]?></td>
-	<?php
-}
-?>
 	</tr>
 	<?php 
 }
-
 ?>
+
+
+
+<tr>
+<?php 
+foreach ($fields as $field_name => $field_label) {
+	?>
+	<th>
+	<?php
+	if($field_name === 'name') {
+		echo L::table_files_total;
+	}
+	if($field_name === 'size') {
+		$sum_of_files_size = sizeToString($sum_of_files_size);
+		echo $sum_of_files_size;
+	}
+	?>
+	</th>
+	<?php
+	
+}
+if(isset($_SESSION["user"])) {
+	?>	<th>&nbsp;</th><?php 
+}
+?>
+	</tr>
+
 </table>
 
 

@@ -12,8 +12,8 @@ Session::start();
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 	<title><?= $conf['title'] ?></title>
 	<link href="index.css" rel="stylesheet" type="text/css" />
-	<link href="js/jquery-ui/jquery-ui.min.css" rel="stylesheet">
-	<link href="js/jquery-ui/themes/smoothness/theme.css" rel="stylesheet">
+	<link href="js/jquery-ui/jquery-ui.min.css" rel="stylesheet" />
+	<link href="js/jquery-ui/themes/smoothness/theme.css" rel="stylesheet" />
 </head>
 <body>
 <script src="./js/jquery-2.1.1.min.js"></script>
@@ -37,9 +37,9 @@ if(isset($_SESSION["user"])) {
 <td width="50%">
 <div class="right_applet">
 	<span>
-		<form action="search.php" method="get" name="search">
-			<input type="text" name="query" value="<?= L::header_search_action; ?>"></input>
-<!-- 			<button type="submit">envoyer</button> -->
+<!--		<form action="search.php" method="get" name="search"> -->
+<!--			<input type="text" name="query" value="<?= L::header_search_action; ?>"></input> -->
+<!--			<button type="submit">envoyer</button> -->
 		</form>
 	</span>
 	<?php 
