@@ -16,7 +16,7 @@ Session::start();
 	<link href="js/jquery-ui/themes/smoothness/theme.css" rel="stylesheet" />
 </head>
 <body>
-<script src="./js/jquery-2.1.1.min.js"></script>
+<script src="./js/jquery.min.js"></script>
 <script src="js/jquery-ui/jquery-ui.min.js"></script>
 <script src="index.js"></script>
 
