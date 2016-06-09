@@ -9,23 +9,23 @@ if(isset($_SESSION["user"])) {
 	?>
 <fieldset>
 	<legend><?= L::admin_actions_legend ?></legend>
-	
+
+
+<table class="no_border">
 <!-- new directory -->
-<form action="actions/mkdir.post.php" method="post">
-	<label for="new_dir"><?= L::admin_new_dir_label ?> :</label>
-	<input type="text" name="new_dir" size="100" maxlength="256"/>
-	<input type="hidden" name="subdir" value="<?=$subdir?>"/>
-	<button type="submit"><?= L::admin_create_button ?></button>
-</form>
-
-<!-- new symlink -->
-<form action="actions/symlink.post.php" method="post">
-	<label for="new_dir"><?= L::admin_new_symlink_label ?> :</label>
-	<input type="text" name="destination" size="100" maxlength="2048"/>
-	<input type="hidden" name="subdir" value="<?=$subdir?>"/>
-	<button type="submit"><?= L::admin_create_button ?></button>
-</form>
-
+	<tr> <form action="actions/mkdir.post.php" method="post">
+		<td><label for="new_dir"><?= L::admin_new_dir_label ?> :</label></td>
+		<td><input type="text" name="new_dir" size="100" maxlength="256"/><input type="hidden" name="subdir" value="<?=$subdir?>"/></td>
+		<td><button type="submit"><?= L::admin_create_button ?></button></td>
+	</form> </tr>
+	
+	<!-- new symlink -->
+	<tr> <form action="actions/symlink.post.php" method="post">
+		<td><label for="new_dir"><?= L::admin_new_symlink_label ?> :</label></td>
+		<td><input type="text" name="destination" size="100" maxlength="2048"/><input type="hidden" name="subdir" value="<?=$subdir?>"/></td>
+		<td><button type="submit"><?= L::admin_create_button ?></button></td>
+	</form> </tr>
+</table>
 <br/>
 
 <!-- download form -->

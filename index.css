@@ -18,9 +18,9 @@ td {
 	display: table-cell;
 	vertical-align: middle;
 }
-table.hidden, table.hidden tr, table.hidden td {
+table.no_border, table.no_border th, table.no_border tr, table.no_border td {
 	border: none;
-}
+} 
 
 h1, h2 {
 	display: inline;

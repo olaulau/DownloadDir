@@ -20,7 +20,7 @@ Session::start();
 <script src="js/jquery-ui/jquery-ui.min.js"></script>
 <script src="index.js"></script>
 
-<table width="100%" class="hidden"><tr>
+<table width="100%" class="no_border"><tr>
 <td width="50%">
 <?php
 // rsync button
