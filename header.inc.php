@@ -18,7 +18,6 @@ Session::start();
 <body>
 <script src="./js/jquery.min.js"></script>
 <script src="js/jquery-ui/jquery-ui.min.js"></script>
-<script src="index.js"></script>
 
 <table width="100%" class="no_border"><tr>
 <td width="50%">

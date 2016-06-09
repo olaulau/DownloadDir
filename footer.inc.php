@@ -7,3 +7,5 @@
 	echo L::footer_page_build . ' ' . $generation_time . ' ms - ' . L::footer_powered_by . ' <a href="https://github.com/olaulau/DownloadDir">DownloadDir</a>';
 	?>
 </p>
+
+<script src="index.js"></script>

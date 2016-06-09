@@ -1,6 +1,10 @@
+//  style all buttons
+$( "a, button" ).button();
+
+
 $(function(){
-	var href = '';
 	
+	var href = '';
 	$( "#dialog" ).dialog({
 		autoOpen: false,
 		width: 400,
@@ -21,7 +25,6 @@ $(function(){
 			}
 		]
 	});
-
 	// Link to open the dialog 
 	$( ".dialog_confirm" ).each(function(){
 		$(this).click(function( event ) {
@@ -30,4 +33,5 @@ $(function(){
 			event.preventDefault();
 		});
 	});
+	
 });
