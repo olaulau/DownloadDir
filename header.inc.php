@@ -42,7 +42,12 @@ if(isset($_SESSION["user"])) {
 		</form>
 	</span>
 	<?php 
-	require 'auth/user_login_applet.inc.php';
+	if(!isset($_SESSION["user"])) {
+		?><span><?= L::auth_guest ?> <a href="auth/login.php"><?= L::auth_loging_label ?></a></span></span><?php
+	}
+	else {
+		?><span><?=$_SESSION["user"]?> <a href="auth/logout.action.php?>"><?= L::auth_logout_label ?></a></span><?php
+	}
 	?>
 </div>
 </td>
