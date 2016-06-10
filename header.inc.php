@@ -26,7 +26,15 @@ Session::start();
 if(isset($_SESSION["user"])) {
 	?>
 	<form action="actions/rsync.action.php" method="get">
-		<button type="submit"><?= L::admin_rsync_button; ?></button>
+		<div>
+			<button type="submit"><?= L::admin_rsync_button; ?></button>
+			<button id="sync_select">Select an action</button>
+		</div>
+		<ul>
+			<li>1</li>
+			<li>2</li>
+			<li>3</li>
+		</ul>
 	</form>
 	<?php
 }

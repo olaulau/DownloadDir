@@ -50,3 +50,7 @@ input {
 	background-color: #FCC;
 	text-align: center;
 }
+
+.ui-menu {
+	position: absolute; width: 100px;
+}
