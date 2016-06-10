@@ -43,16 +43,18 @@ if(isset($_SESSION["user"])) {
 
 
 // breadcrumb
-?><h1><a href="./"><?= $conf['title'] ?></a></h1><?php
 $directories = explode("/", $subdir);
 $current_dirs = array();
+$breads = array('<h1><a href="./">' . $conf['title'] . '</a></h1>');
 foreach ($directories as $directory) {
-	$current_dirs[] = $directory;
-	$current_dir = implode("/", $current_dirs);
-	$liens[] = '<a href="index.php?subdir=' . $current_dir . '">' . $directory . '</a>';
+	if($directory !== "") { // subdir can be empty (at root level)
+		$current_dirs[] = $directory;
+		$current_dir = implode("/", $current_dirs);
+		$breads[] = '<h2><a href="index.php?subdir=' . $current_dir . '">' . $directory . '</a></h2>';
+	}
 }
-echo "<h2> / " . implode(" / ", $liens) . "</h2>
-<br/><br/>";
+echo implode(" / ", $breads);
+echo "<br/><br/>";
 if($conf['debug'] === TRUE) echo "end of breadcrumbs <br/>";
 
 
