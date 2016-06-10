@@ -5,8 +5,8 @@ Session::start();
 
 
 $user = $_POST["user"];
-$password = $_POST["password"];
-// echo "$user $password";
+$password = $_POST["password_hashed"];
+// echo "$user $password"; die;
 
 if(!empty($user) && !empty($password)) {
 	$hashed = hash("sha512", $password);

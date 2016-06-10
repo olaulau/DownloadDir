@@ -32,7 +32,7 @@ if(isset($_SESSION["user"])) {
 				<button type="submit"><?= L::common_submit_button ?></button>
 			</form>
 			
-			<script src="./../js/jquery-2.1.1.min.js"></script>
+			<script src="./../js/jquery.min.js"></script>
 			<script src="./../jstree/jstree.min.js"></script>
 			
 			<script>

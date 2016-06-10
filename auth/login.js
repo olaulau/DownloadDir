@@ -6,6 +6,7 @@ $(function(){
 		var hash = shaObj.getHash("SHA-512", "HEX");
 		$("#password_hashed").val(hash);
 		
+		$("#password").remove();
 		$("form").submit();
 	});
 	
