@@ -1,5 +1,10 @@
 <?php
+require_once "html-head.inc.php";
+// require_once "html-head-foot.inc.php";
+// head();
+
 require_once "header.inc.php";
+
 
 
 $subdir = isset($_GET["subdir"]) ? $_GET["subdir"] : "";
@@ -254,8 +259,4 @@ if(isset($_SESSION["user"])) {
 
 <?php
 require_once "footer.inc.php";
-?>
-
-
-</body>
-</html>
+require_once "html-foot.inc.php";
