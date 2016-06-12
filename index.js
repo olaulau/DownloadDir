@@ -1,6 +1,3 @@
-//  style all buttons
-$( "a, button" ).button();
-
 //  build sync choice button
 $("#sync_select")
 .button({

@@ -9,3 +9,4 @@
 </p>
 
 <script src="index.js"></script>
+<script src="js/design.js"></script>

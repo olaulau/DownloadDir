@@ -10,7 +10,7 @@ body {
 }
 
 table, th, tr, td {
-	border: solid black 1px;
+	border: solid #999 2px;
 	border-collapse: collapse;
 }
 td {
@@ -53,4 +53,16 @@ input {
 
 .ui-menu {
 	position: absolute; width: 100px;
+}
+
+.login {
+	margin: auto;
+
+}
+
+.centered-parent {
+	text-align: center;
+}
+.centered-content {
+	display: inline-block;
 }
