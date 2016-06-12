@@ -9,6 +9,9 @@
 class Session {
 	
 	static function start(){
+		$app_base_path = app_base_path();
+		session_set_cookie_params(0, $app_base_path);
+		
 		session_start();
 		session_write_close();
 	}
