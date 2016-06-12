@@ -4,17 +4,19 @@
 // rsync button
 if(isset($_SESSION["user"])) {
 	?>
-	<form action="actions/rsync.action.php" method="get">
-		<div>
-			<button type="submit"><?= L::admin_rsync_button; ?></button>
-			<button id="sync_select">Select an action</button>
-		</div>
-		<ul>
-			<li>1</li>
-			<li>2</li>
-			<li>3</li>
-		</ul>
-	</form>
+	<div>
+		<a href="actions/sync.action.php"><?= L::admin_rsync_button; ?></a>
+		<button id="sync_select">Select an action</button>
+	</div>
+	<ul>
+		<?php
+		$s = new Syncer($conf["sync_script_dir"]);
+		$scripts = $s->listScripts();
+		foreach ($scripts as $id => $script) {
+			echo '<li><a href="actions/sync.action.php?id='.$id.'">' . $script . '</a></li>';
+		}
+		?>
+	</ul>
 	<?php
 }
 ?>

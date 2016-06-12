@@ -52,7 +52,7 @@ input {
 }
 
 .ui-menu {
-	position: absolute; width: 100px;
+	position: absolute; width: auto;
 }
 
 .login {
