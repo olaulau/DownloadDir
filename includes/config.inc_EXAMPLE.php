@@ -6,7 +6,7 @@ $base_dir = "/home/user/downloads/";
 $base_url = "http://localhost/downloads";
 $conf["sync_script_dir"] = "/home/user/BIN/downloads_push/";
 $auth["users"] = array(
-		"admin" => "SHA512 hex string you can generate with /auth/convert.post.php"
+		"admin" => "SHA512 hex string you can generate with /auth/convert.php"
 );
 
 
