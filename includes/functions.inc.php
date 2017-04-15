@@ -192,5 +192,11 @@ function app_base_path() {
 	$app_base_path = str_replace($webroot, '', __DIR__);
 	$app_base_path = dirname($app_base_path); //  because we are in a subdir, we must go to parent
 	// 	echo $app_base_path . "<br/><br/>";
-	return $app_base_path;
+	
+	if($app_base_path === '/') {
+		return '';
+	}
+	else {
+		return $app_base_path;
+	}
 }
