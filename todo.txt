@@ -1,4 +1,11 @@
-TODO : 
+TODO :
+
+- priorité
+	- intégrer icones dans le projet
+	- focus sur le champ login à l'authentification
+	
+	- dépendances en composer
+	- design bootstrap 
 
 - évols
 	- comme créer un répertoire : créer un lien symbolique
