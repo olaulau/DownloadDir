@@ -174,6 +174,6 @@ function toJstreeObject($tree, $text="/", $fullPath="", $level=0) {
 function app_base_path() {
 	require_once __DIR__ . '/../root.inc.php';
 // 	echo URLADDR; die;
-	return URLADDR;
+	return rtrim(URLADDR,'/');
 }
 
