@@ -1,0 +1,27 @@
+HeaderName /apache_listing/indexoverride/HEADER.html
+ReadmeName /apache_listing/indexoverride/FOOTER.html
+
+
+#IndexOptions IgnoreCase
+IndexOptions +IconWidth=32 +IconHeight=32 +NameWidth=*
+IndexIgnore .htaccess Thumbs.db ./indexoverride cdicons
+
+AddIcon (IMG,/apache_listing/indexoverride/image.png) .jpg .JPG .png .PNG .bmp .BMP .svg .SVG .gif .GIF .wmf .WMF .psd .PSD .ico .ICO
+AddIcon (VIDEO,/apache_listing/indexoverride/video.png) .mov .MOV .avi .AVI .mpg .MPG
+AddIcon (MUSIC,/apache_listing/indexoverride/music.png) .wav .WAV .mp3 .MP3
+AddIcon (FLA,/apache_listing/indexoverride/flash_src.png) .fla .FLA .as .AS
+AddIcon (SWF,/apache_listing/indexoverride/swf.png) .swf .SWF
+AddIcon (TXT,/apache_listing/indexoverride/default.png) .txt .TXT
+AddIcon (XLS,/apache_listing/indexoverride/xls.png) .xls .XLS .csv .CSV
+AddIcon (DOC,/apache_listing/indexoverride/doc.png) .doc .DOC
+AddIcon (PPT,/apache_listing/indexoverride/ppt.png) .ppt .PPT
+AddIcon (PPT,//apache_listing/indexoverride/pdf.png) .pdf .PDF
+AddIcon (PHP,/apache_listing/indexoverride/php.png) .php .PHP
+AddIcon (HTM,/apache_listing/indexoverride/html.png) .htm .html .HTM .HTML
+AddIcon (HTM,/apache_listing/indexoverride/css.png) .css .CSS
+AddIcon (ARCHIVE,/apache_listing/indexoverride/archive.png) .zip .rar .arj .arc .tar .targz .gz
+#AddIcon (PAR,/apache_listing/indexoverride/dir.png) ..
+AddIcon (DIR,/apache_listing/indexoverride/dir.png) ^^DIRECTORY^^
+
+DefaultIcon /apache_listing/indexoverride/default.png
+
