@@ -4,4 +4,6 @@
 .project
 
 includes/config.inc.php
+/apache_listing
 /test.php
+

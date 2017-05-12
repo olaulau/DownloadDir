@@ -3,7 +3,7 @@
 $conf['debug'] = FALSE;
 $conf['title'] = 'Downloads';
 $base_dir = "/home/user/downloads/";
-$base_url = "http://localhost/downloads";
+$base_url = "http://localhost/apache_listing/"; //you can use the git-ignored /apache_listing/ at the root of the project to point to $base_dir
 $conf["sync_script_dir"] = "/home/user/BIN/downloads_push/";
 $auth["users"] = array(
 		"admin" => "SHA512 hex string you can generate with /auth/convert.php"
