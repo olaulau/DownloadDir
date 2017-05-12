@@ -15,7 +15,7 @@ else {
 		<div class="centered-content">
 			<form action="login.post.php" method="post">
 				<table>
-					<tr><td><?= L::auth_login_label ?> :</td><td><input type="text" name="user" id="user"></td></tr>
+					<tr><td><?= L::auth_login_label ?> :</td><td><input type="text" name="user" id="user" autofocus></td></tr>
 					<tr><td><?= L::auth_password_label ?> :</td><td><input type="password" name="password" id="password"></td></tr>
 				</table>
 				<input type="hidden" name="password_hashed" id="password_hashed">
