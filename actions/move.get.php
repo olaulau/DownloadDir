@@ -10,7 +10,7 @@ Session::start();
 	<meta charset="UTF-8">
 	<title></title>
 	<style></style>
-	<link href="./../jstree/themes/default/style.min.css" rel="stylesheet" />
+	<link href="./../vendor/vakata/jstree/dist/themes/default/style.min.css" rel="stylesheet" />
 	<link href="../index.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
@@ -33,7 +33,7 @@ if(isset($_SESSION["user"])) {
 			</form>
 			
 			<script src="./../vendor/components/jquery/jquery.min.js"></script>
-			<script src="./../jstree/jstree.min.js"></script>
+			<script src="./../vendor/vakata/jstree/dist/jstree.min.js"></script>
 			
 			<script>
 			// http://stackoverflow.com/a/901144/1248801
