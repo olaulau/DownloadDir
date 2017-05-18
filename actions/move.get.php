@@ -1,5 +1,6 @@
 <?php 
 require_once '../includes/ALL.inc.php';
+$app_base_path = app_base_path();
 
 Session::start();
 ?>
@@ -10,8 +11,8 @@ Session::start();
 	<meta charset="UTF-8">
 	<title></title>
 	<style></style>
-	<link href="./../vendor/vakata/jstree/dist/themes/default/style.min.css" rel="stylesheet" />
-	<link href="../index.css" rel="stylesheet" type="text/css" />
+	<link href="<?=$app_base_path?>/vendor/vakata/jstree/dist/themes/default/style.min.css" rel="stylesheet" />
+	<link href="<?=$app_base_path?>/index.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
 
@@ -32,8 +33,8 @@ if(isset($_SESSION["user"])) {
 				<button type="submit"><?= L::common_submit_button ?></button>
 			</form>
 			
-			<script src="./../vendor/components/jquery/jquery.min.js"></script>
-			<script src="./../vendor/vakata/jstree/dist/jstree.min.js"></script>
+			<script src="<?=$app_base_path?>/vendor/components/jquery/jquery.min.js"></script>
+			<script src="<?=$app_base_path?>/vendor/vakata/jstree/dist/jstree.min.js"></script>
 			
 			<script>
 			// http://stackoverflow.com/a/901144/1248801
