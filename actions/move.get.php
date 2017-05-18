@@ -10,7 +10,7 @@ Session::start();
 	<meta charset="UTF-8">
 	<title></title>
 	<style></style>
-	<link rel="stylesheet" href="./../jstree/themes/default/style.min.css" />
+	<link href="./../jstree/themes/default/style.min.css" rel="stylesheet" />
 	<link href="../index.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
@@ -32,7 +32,7 @@ if(isset($_SESSION["user"])) {
 				<button type="submit"><?= L::common_submit_button ?></button>
 			</form>
 			
-			<script src="./../js/jquery.min.js"></script>
+			<script src="./../vendor/components/jquery/jquery.min.js"></script>
 			<script src="./../jstree/jstree.min.js"></script>
 			
 			<script>

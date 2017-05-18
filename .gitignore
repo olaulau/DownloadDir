@@ -8,4 +8,4 @@ includes/config.inc.php
 /build/rsync.bat
 /apache_listing
 /test.php
-
+/vendor/

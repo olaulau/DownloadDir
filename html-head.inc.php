@@ -13,9 +13,9 @@ Session::start();
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 	<title><?= $conf['title'] ?></title>
 	<link href="<?=$app_base_path?>/index.css" rel="stylesheet" type="text/css" />
-	<link href="<?=$app_base_path?>/js/jquery-ui/jquery-ui.min.css" rel="stylesheet" />
-	<link href="<?=$app_base_path?>/js/jquery-ui/themes/smoothness/theme.css" rel="stylesheet" />
-	<script type="text/javascript" src="<?=$app_base_path?>/js/jquery.min.js"></script>
-	<script type="text/javascript" src="<?=$app_base_path?>/js/jquery-ui/jquery-ui.min.js"></script>
+	<link href="<?=$app_base_path?>/vendor/components/jqueryui/themes/smoothness/jquery-ui.min.css" rel="stylesheet" />
+	<link href="<?=$app_base_path?>/vendor/components/jqueryui/themes/smoothness/theme.css" rel="stylesheet" />
+	<script type="text/javascript" src="<?=$app_base_path?>/vendor/components/jquery/jquery.min.js"></script>
+	<script type="text/javascript" src="<?=$app_base_path?>/vendor/components/jqueryui/jquery-ui.min.js"></script>
 </head>
 <body>

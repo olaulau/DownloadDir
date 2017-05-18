@@ -1,0 +1,7 @@
+{
+	"name": "olaualu/DownloadDir",
+    "require": {
+        "components/jquery": "^3.2",
+        "components/jqueryui": "^1.12"
+    }
+}

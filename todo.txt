@@ -1,8 +1,8 @@
 TODO :
 
 - technique
-	- dépendances en composer
-
+	- 
+	
 - évols
 	- interdire les liens symboliques pointant :
 		- dans l'arborescence du downloadDir (?)
