@@ -1,5 +1,6 @@
 <?php
 require_once '../includes/ALL.inc.php';
+$app_base_path = app_base_path();
 
 Session::start();
 ?>
@@ -9,7 +10,7 @@ Session::start();
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 	<title></title>
-	<link href="../index.css" rel="stylesheet" type="text/css" />
+	<link href="<?=$app_base_path?>/index.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
 
