@@ -1,6 +1,17 @@
 <?php
 
 
+function vd($var) {
+	echo "<pre>";
+	var_dump($var);
+	echo "</pre>";
+}
+function vdd($var) {
+	vd($var);
+	die;
+}
+
+
 function sizeToString($size) {
 	$factor = 1024;
 	$units = array("o", "Kio", "Mio", "Gio", "Tio", "Pio", "Eio", "Zio", "Yio");

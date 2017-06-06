@@ -20,22 +20,22 @@ $exclude = array(
 );
 
 
-$conf["directory_icon"] = "/indexoverride/dir.png";
+$conf["directory_icon"] = "indexoverride/dir.png";
 $conf["default_icon"] = "indexoverride/default.png";
 $conf["icons"] = array(
-	"/indexoverride/image.png" => array(".jpg", ".png" ."bmp", ".svg", ".gif", ".wmf", ".psd", ".ico"),
-	"/indexoverride/video.png" => array(".mov", ".avi", ".mpg"),
-	"/indexoverride/music.png" => array(".wav", ".mp3"),
-	"/indexoverride/flash_src.png" => array(".fla", ".as"),
-	"/indexoverride/swf.png" => array(".swf"),
-	"/indexoverride/xls.png" => array(".xls", ".csv"),
-	"/indexoverride/doc.png" => array(".doc"),
-	"/indexoverride/ppt.png" => array(".ppt"),
-	"/indexoverride/pdf.png" => array(".pdf"),
-	"/indexoverride/php.png" => array(".php"),
-	"/indexoverride/html.png" => array(".htm", ".html"),
-	"/indexoverride/css.png" => array(".css"),
-	"/indexoverride/archive.png" => array(".zip", ".rar", ".arj", ".arc", ".tar", ".targz", ".gz"),
+	"indexoverride/image.png" => array(".jpg", ".png" ."bmp", ".svg", ".gif", ".wmf", ".psd", ".ico"),
+	"indexoverride/video.png" => array(".mov", ".avi", ".mpg"),
+	"indexoverride/music.png" => array(".wav", ".mp3"),
+	"indexoverride/flash_src.png" => array(".fla", ".as"),
+	"indexoverride/swf.png" => array(".swf"),
+	"indexoverride/xls.png" => array(".xls", ".csv"),
+	"indexoverride/doc.png" => array(".doc"),
+	"indexoverride/ppt.png" => array(".ppt"),
+	"indexoverride/pdf.png" => array(".pdf"),
+	"indexoverride/php.png" => array(".php"),
+	"indexoverride/html.png" => array(".htm", ".html"),
+	"indexoverride/css.png" => array(".css"),
+	"indexoverride/archive.png" => array(".zip", ".rar", ".arj", ".arc", ".tar", ".targz", ".gz"),
 	
 	"/icons/binary.gif" => array(".bin", ".exe"),
 	"/icons/binhex.gif" => array(".hqx"),

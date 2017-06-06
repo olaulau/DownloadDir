@@ -1,7 +1,7 @@
 TODO :
 
 - technique
-	- 
+	- ajouter bouton "view with apache_listing", mode debug ?
 	
 - évols
 	- interdire les liens symboliques pointant :
