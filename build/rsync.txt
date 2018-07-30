@@ -10,3 +10,4 @@ ssh-keygen -t rsa
 
 puis copier la clef vers le serveur :
 ssh-copy-id -i ~/.ssh/id_rsa.pub <login>@<host>
+ 

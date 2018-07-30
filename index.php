@@ -1,8 +1,5 @@
 <?php
 require_once "html-head.inc.php";
-// require_once "html-head-foot.inc.php";
-// head();
-
 require_once "header.inc.php";
 
 
@@ -69,6 +66,7 @@ $dir = dir($current_dir);
 if($dir === FALSE) {
 	die("ERROR : directory not found. ");
 }
+$list = [];
 while($filename = $dir->read()) {
 	$list[] = $filename;
 }
@@ -89,10 +87,17 @@ foreach ($list as $filename) {
 			$is_directory = FALSE;
 			$icon = getIcon($filename);
 		}
-		if(is_link($full_filename))
-			$realpath = readlink($full_filename);
-		else
-			$realpath = null;
+		
+		$realpath = null;
+		$link_destination = null;
+		if (is_link($full_filename)) {
+			$link_destination = readlink($full_filename);
+			$realpath = $link_destination;
+			if (!file_exists($link_destination)) {
+				$realpath = $current_dir . "/" . $link_destination;
+			}
+		}
+			
 		$stat = stat($full_filename);
 		$files_raw_data[] = array(
 				"name" => $filename,
@@ -100,6 +105,7 @@ foreach ($list as $filename) {
 				"size" => $stat["size"],
 				"is_directory" => $is_directory,
 				"icon" => $icon,
+				'link_destination' => $link_destination,
 				'realpath' => $realpath,
 			);
 	}
@@ -149,7 +155,14 @@ foreach ($files_raw_data as $file_raw_data) {
 		<a href="actions/move.get.php?subdir='.  urlencode($subdir).'&file='.urlencode($file_raw_data["name"]).'">
 			<img src="images/move.svg" width="32" height="32" alt="'.L::admin_move_action.'" title="'.L::admin_move_action.'"/></a>
 		';
-	$realpath = ( empty($file_raw_data['realpath']) ? '' : '-> '.$file_raw_data['realpath'] );
+	
+	$link_destination = '';
+	if (!empty($file_raw_data['link_destination'])) {
+		$link_destination = '-> '.$file_raw_data['link_destination'];
+		if (!file_exists($file_raw_data['realpath'])) {
+			$link_destination = '<span class="error">' . $link_destination . '<span>';
+		}
+	}
 	
 	$files_formated_data[] = array(
 		'icon' => $icon,
@@ -157,7 +170,7 @@ foreach ($files_raw_data as $file_raw_data) {
 		"last_modified" => $last_modified,
 		"size" => $size,
 		"actions" => $actions,
-		'realpath' => $realpath,
+		'link_destination' => $link_destination,
 	);
 }
 if($conf['debug'] === TRUE) echo "end of formating <br/>";
@@ -167,7 +180,7 @@ if($conf['debug'] === TRUE) echo "end of formating <br/>";
 ?>
 <table>
 	<tr>
-<?php 
+<?php
 $current_url = new Url();
 $fields = array(
 	"icon" => '',
@@ -187,7 +200,7 @@ foreach ($fields as $field_name => $field_label) {
 	
 }
 if(isset($_SESSION["user"])) {
-	?>	<th>&nbsp;</th><?php 
+	?>	<th>&nbsp;</th><?php
 }
 ?>
 	</tr>
@@ -199,11 +212,12 @@ foreach ($files_formated_data as $file_formated_data) {
 	<tr>
 		<td><?=$file_formated_data["icon"]?></td>
 		<td><?=$file_formated_data["name"]?>
-	<?php 
+	<?php
 	if(isset($_SESSION["user"])) {
-		if(!empty($file_formated_data["realpath"])) {
+		if(!empty($file_formated_data["link_destination"])) {
 			?>
-				<br/> <?=$file_formated_data["realpath"]?>
+			<br/>
+			<?=$file_formated_data["link_destination"]?>
 			<?php
 		}
 	}
@@ -211,7 +225,7 @@ foreach ($files_formated_data as $file_formated_data) {
 			</td>
 			<td><?=$file_formated_data["last_modified"]?></td>
 			<td><?=$file_formated_data["size"]?></td>
-	<?php 
+	<?php
 	if(isset($_SESSION["user"])) {
 		?>
 			<td><?=$file_formated_data["actions"]?></td>
@@ -219,14 +233,14 @@ foreach ($files_formated_data as $file_formated_data) {
 	}
 	?>
 	</tr>
-	<?php 
+	<?php
 }
 ?>
 
 
 
 <tr>
-<?php 
+<?php
 foreach ($fields as $field_name => $field_label) {
 	?>
 	<th>
@@ -244,7 +258,7 @@ foreach ($fields as $field_name => $field_label) {
 	
 }
 if(isset($_SESSION["user"])) {
-	?>	<th>&nbsp;</th><?php 
+	?>	<th>&nbsp;</th><?php
 }
 ?>
 	</tr>

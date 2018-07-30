@@ -7,6 +7,7 @@ html, body {
 
 body {
 	background-color: #EEE;
+	font-family: arial;
 }
 
 table, th, tr, td {
@@ -65,4 +66,9 @@ input {
 }
 .centered-content {
 	display: inline-block;
+}
+
+.error {
+	color: white;
+	background-color: red;
 }

@@ -4,8 +4,8 @@
 .project
 
 includes/config.inc.php
-/build/rsync.sh
-/build/rsync.bat
-/apache_listing
+/build/
+/apache_listing/
 /test.php
 /vendor/
+
