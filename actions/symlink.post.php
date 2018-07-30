@@ -6,9 +6,9 @@ Session::start();
 
 if(isset($_SESSION["user"])) {
 	if(!empty($_POST["destination"])) {
-		if(file_exists($_POST["destination"])) {
+		$current_dir = $base_dir."/" . $_POST["subdir"];
+		if(file_exists($current_dir.'/'.$_POST["destination"])) {
 			$basename = basename($_POST["destination"]);
-			$current_dir = $base_dir."/" . $_POST["subdir"];
 			$res = symlink($_POST["destination"], $current_dir.'/'.$basename);
 			// 	echo ($res ? "OK !" : "KO :-(");
 			redirect();
