@@ -1,9 +1,10 @@
-.externalToolBuilders
-.settings
-.buildpath
-.project
+/.externalToolBuilders
+/.settings
+/.buildpath
+/.project
+/.git
 
-includes/config.inc.php
+/includes/config.inc.php
 /build/
 /apache_listing/
 /test.php
