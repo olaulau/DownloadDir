@@ -101,12 +101,20 @@ foreach ($files_raw_data as $file_raw_data) {
 	$new_subdir = new_subdir($subdir, $file_raw_data["name"]);
 	if($file_raw_data["is_directory"]) {
 		$icon = '<img src="' . $file_raw_data["icon"] . '" width=32px", height="32px" />';
+	}
+	
+	if($file_raw_data["is_link"]) {
+		$url = $base_url . "/" . $new_subdir;
+		$name = '<a href="' . $url . '">' . '' . $file_raw_data["name"] . '</a>';
+		$size = "";
+	}
+	elseif($file_raw_data["is_directory"]) {
 		$name = '<a href="index.php?subdir=' . $new_subdir . '">' . $file_raw_data["name"] . "</a>";
 		$size = "";
 	}
 	else {
-		$url = $base_url . "/" . $new_subdir;
 		$icon = '<img src="' . $file_raw_data["icon"].'" width=32px", height="32px" />';
+		$url = $base_url . "/" . $new_subdir;
 		$name = '<a href="' . $url . '">' . '' . $file_raw_data["name"] . '</a>';
 		$size = sizeToString($file_raw_data["size"]);
 		$sum_of_files_size += $file_raw_data["size"];
