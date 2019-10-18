@@ -1,4 +1,8 @@
 <?php
+require_once 'includes/ALL.inc.php';
+$app_base_path = app_base_path();
+
+Session::start();
 
 $subdir = isset($_GET["subdir"]) ? $_GET["subdir"] : "";
 
@@ -19,9 +23,13 @@ if($conf['debug'] === TRUE) echo "end of breadcrumbs <br/>";
 
 // listing
 $current_dir = $base_dir . "/" . $subdir;
+if(!file_exists($current_dir)) {
+	die("ERROR : current directory not found");
+}
+$current_dir = realpath($current_dir);
 $dir = dir($current_dir);
 if($dir === FALSE) {
-	die("ERROR : directory not found. ");
+	die("ERROR while listing current directory");
 }
 $list = [];
 while($filename = $dir->read()) {
@@ -34,9 +42,15 @@ if($conf['debug'] === TRUE) echo "end of listing <br/>";
 $files_raw_data = array();
 foreach ($list as $filename) {
 	if(!in_array($filename, $exclude)) {
-		$new_subdir = new_subdir($subdir, $filename);
-		$full_filename = $base_dir . "/" . $new_subdir;
-		if(is_dir($full_filename)) {
+		$full_filename = $current_dir . "/" . $filename;
+		$realpath = $full_filename;
+		$is_link = false;
+		if(is_link($full_filename)) {
+			$is_link = true;
+			$realpath = readlink($full_filename);
+		}
+		
+		if(is_dir($realpath)) {
 			$is_directory = TRUE;
 			$icon = $conf["directory_icon"];
 		}
@@ -45,26 +59,16 @@ foreach ($list as $filename) {
 			$icon = getIcon($filename);
 		}
 		
-		$realpath = null;
-		$link_destination = null;
-		if (is_link($full_filename)) {
-			$link_destination = readlink($full_filename);
-			$realpath = $link_destination;
-			if (!file_exists($link_destination)) {
-				$realpath = $current_dir . "/" . $link_destination;
-			}
-		}
-			
 		$stat = stat($full_filename);
 		$files_raw_data[] = array(
-				"name" => $filename,
-				"last_modified" => $stat["mtime"],
-				"size" => $stat["size"],
-				"is_directory" => $is_directory,
-				"icon" => $icon,
-				'link_destination' => $link_destination,
-				'realpath' => $realpath,
-			);
+			"name" => $filename,
+			"last_modified" => $stat["mtime"],
+			"size" => $stat["size"],
+			"is_directory" => $is_directory,
+			"is_link" => $is_link,
+			"icon" => $icon,
+			'realpath' => $realpath,
+		);
 	}
 }
 if($conf['debug'] === TRUE) echo "end of raw datas <br/>";
@@ -114,8 +118,8 @@ foreach ($files_raw_data as $file_raw_data) {
 		';
 	
 	$link_destination = '';
-	if (!empty($file_raw_data['link_destination'])) {
-		$link_destination = '-> '.$file_raw_data['link_destination'];
+	if ($file_raw_data['is_link']) {
+		$link_destination = '-> '.$file_raw_data['realpath'];
 		if (!file_exists($file_raw_data['realpath'])) {
 			$link_destination = '<span class="error">' . $link_destination . '<span>';
 		}

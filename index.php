@@ -1,6 +1,9 @@
 <?php
-require_once "html-head.inc.php";
+$generation_start = microtime(TRUE);
+
 require_once "index.ctrl.php";
+
+require_once "html-head.inc.php";
 require_once "header.inc.php";
 
 
