@@ -48,6 +48,10 @@ foreach ($list as $filename) {
 		if(is_link($full_filename)) {
 			$is_link = true;
 			$realpath = readlink($full_filename);
+			if(substr($realpath, 0, 1) !== '/') {
+				$full_filename = $current_dir . "/" . $realpath;
+				$realpath = realpath($full_filename);
+			}
 		}
 		
 		if(is_dir($realpath)) {
