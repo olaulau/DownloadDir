@@ -1,4 +1,10 @@
 <?php
+require_once __DIR__ . '/../includes/ALL.inc.php';
+$app_base_path = app_base_path();
+
+Session::start();
+
+
 require_once "../html-head.inc.php";
 ?>
 
