@@ -9,5 +9,3 @@ Session::start();
 $tab = getAllSubdir($base_dir, "", $exclude);
 $tab = toJstreeObject($tab);
 echo json_encode($tab); exit;
-
-?>

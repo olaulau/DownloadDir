@@ -99,6 +99,7 @@ function getIcon($filename) {
 	return $res;
 }
 
+
 function startsWith($haystack, $needle)
 {
 	return strpos($haystack, $needle) === 0;
@@ -108,10 +109,12 @@ function endsWith($haystack, $needle)
 {
 	return substr($haystack, -strlen($needle)) == $needle;
 }
+
 function endsWithCase($haystack, $needle) // case insensitive
 {
 	return (strcasecmp(substr($haystack, -strlen($needle)), $needle) == 0);
 }
+
 
 function redirect($url="") {
 	if(empty($url))
@@ -120,23 +123,31 @@ function redirect($url="") {
 }
 
 
+function getAllSubdir ($dir, $subdir = "", $exclude = array())
+{
+	$cmd = "cd $dir/$subdir && find -type d";
+// 	$cmd = "$cmd 2>&1";
+	exec($cmd, $output, $res);
+// 	var_dump($output); die;
 
-function getAllSubdir($dir, $subdir="", $exclude=array()) {
-	$res = array();
-	$directory = dir($dir . "/" . $subdir);
-	while($filename = $directory->read()) {
-		if(!in_array($filename, $exclude)) {
-			if(is_dir($dir . "/" . $subdir . "/" . $filename)) {
-				$res[$filename] = getAllSubdir($dir, $subdir."/".$filename, $exclude);
+	
+	$res = [];
+	foreach ($output as $file)
+	{
+		$current_dir = &$res;
+		$dirs = explode("/", $file);
+		array_shift($dirs);
+		foreach ($dirs as $dir)
+		{
+			if(!isset($current_dir [$dir]))
+			{
+				$current_dir [$dir] = [];
 			}
+			$current_dir = &$current_dir [$dir];
 		}
 	}
-	if(!empty($res))
-		return $res;
-	else
-		return NULL;
+	return $res;
 }
-
 
 
 function array_struct_flatten($array, $glue, $parent="") {
@@ -149,7 +160,6 @@ function array_struct_flatten($array, $glue, $parent="") {
 	}
 	return $res;
 }
-
 
 
 function toJstreeObject($tree, $text="/", $fullPath="", $level=0) {
@@ -177,6 +187,7 @@ function toJstreeObject($tree, $text="/", $fullPath="", $level=0) {
 	);
 	return $res;
 }
+
 
 /**
  * http://stackoverflow.com/a/185725
