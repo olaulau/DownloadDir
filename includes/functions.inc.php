@@ -153,7 +153,7 @@ function array_struct_flatten($array, $glue, $parent="") {
 
 
 function toJstreeObject($tree, $text="/", $fullPath="", $level=0) {
-	if( count($tree) > 0 ) {
+    if( is_array($tree) && count($tree)>0 ) {
 		ksort($tree);
 		$children = array();
 		foreach($tree as $key => $value) {
