@@ -198,4 +198,3 @@ function app_base_path() {
 // 	echo URLADDR; die;
 	return rtrim(URLADDR,'/');
 }
-
