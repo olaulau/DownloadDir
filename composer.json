@@ -1,8 +1,8 @@
 {
-	"name": "olaualu/DownloadDir",
-    "require": {
-        "components/jquery": "^3.2",
-        "components/jqueryui": "^1.12",
-		"vakata/jstree": "^3.3"
-    }
+	"name" : "olaulau/download-dir",
+	"require" : {
+		"components/jquery" : "^3",
+		"components/jqueryui" : "^1",
+		"vakata/jstree" : "^3.3"
+	}
 }
