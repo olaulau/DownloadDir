@@ -8,16 +8,16 @@
     "packages": [
         {
             "name": "components/jquery",
-            "version": "3.5.1",
+            "version": "3.6.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/components/jquery.git",
-                "reference": "b33e8f0f9a1cb2ae390cf05d766a900b53d2125b"
+                "reference": "6cf38ee1fd04b6adf8e7dda161283aa35be818c3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/components/jquery/zipball/b33e8f0f9a1cb2ae390cf05d766a900b53d2125b",
-                "reference": "b33e8f0f9a1cb2ae390cf05d766a900b53d2125b",
+                "url": "https://api.github.com/repos/components/jquery/zipball/6cf38ee1fd04b6adf8e7dda161283aa35be818c3",
+                "reference": "6cf38ee1fd04b6adf8e7dda161283aa35be818c3",
                 "shasum": ""
             },
             "type": "component",
@@ -46,7 +46,14 @@
             ],
             "description": "jQuery JavaScript Library",
             "homepage": "http://jquery.com",
-            "time": "2020-05-05T13:21:02+00:00"
+            "support": {
+                "forum": "http://forum.jquery.com",
+                "irc": "irc://irc.freenode.org/jquery",
+                "issues": "https://github.com/jquery/jquery/issues",
+                "source": "https://github.com/jquery/jquery",
+                "wiki": "http://docs.jquery.com/"
+            },
+            "time": "2021-03-20T19:13:42+00:00"
         },
         {
             "name": "components/jqueryui",
@@ -131,20 +138,24 @@
                 }
             ],
             "description": "jQuery UI is a curated set of user interface interactions, effects, widgets, and themes built on top of the jQuery JavaScript Library. Whether you're building highly interactive web applications or you just need to add a date picker to a form control, jQuery UI is the perfect choice.",
+            "support": {
+                "issues": "https://github.com/components/jqueryui/issues",
+                "source": "https://github.com/components/jqueryui/tree/master"
+            },
             "time": "2016-09-16T05:47:55+00:00"
         },
         {
             "name": "vakata/jstree",
-            "version": "3.3.11",
+            "version": "3.3.15",
             "source": {
                 "type": "git",
                 "url": "https://github.com/vakata/jstree.git",
-                "reference": "4a77e59a3f67b0beb1b576cc211cb7e7a76a9879"
+                "reference": "8c1bcc87771f5be0b70cd49d6a7888707ebcc64e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/vakata/jstree/zipball/4a77e59a3f67b0beb1b576cc211cb7e7a76a9879",
-                "reference": "4a77e59a3f67b0beb1b576cc211cb7e7a76a9879",
+                "url": "https://api.github.com/repos/vakata/jstree/zipball/8c1bcc87771f5be0b70cd49d6a7888707ebcc64e",
+                "reference": "8c1bcc87771f5be0b70cd49d6a7888707ebcc64e",
                 "shasum": ""
             },
             "require": {
@@ -188,17 +199,18 @@
             ],
             "description": "jsTree is jquery plugin, that provides interactive trees.",
             "homepage": "http://jstree.com",
+            "support": {
+                "forum": "https://groups.google.com/forum/#!forum/jstree",
+                "issues": "https://github.com/vakata/jstree/issues",
+                "source": "https://github.com/vakata/jstree"
+            },
             "funding": [
-                {
-                    "url": "https://www.paypal.com/cgi-bin/webscr?cmd=_xclick&business=paypal@vakata.com&currency_code=USD&amount=&return=http://jstree.com/donation&item_name=Buy+me+a+coffee+for+jsTree",
-                    "type": "custom"
-                },
                 {
                     "url": "https://github.com/vakata",
                     "type": "github"
                 }
             ],
-            "time": "2020-12-18T20:56:30+00:00"
+            "time": "2023-02-19T23:38:56+00:00"
         }
     ],
     "packages-dev": [],
@@ -209,5 +221,5 @@
     "prefer-lowest": false,
     "platform": [],
     "platform-dev": [],
-    "plugin-api-version": "1.1.0"
+    "plugin-api-version": "2.3.0"
 }
