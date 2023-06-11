@@ -21,7 +21,7 @@ This is a web file-manager, targeted for downloaded files.
 #### Requirements :
 - Linux server (find command available)
 - web server (tested with Apache 2.4)
-- PHP (tested with version 7.4)
+- PHP (tested with version 8.0)
 
 
 #### Install :

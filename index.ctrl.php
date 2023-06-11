@@ -26,7 +26,6 @@ $current_dir = $base_dir . "/" . $subdir;
 if(!file_exists($current_dir)) {
 	die("ERROR : current directory not found");
 }
-$current_dir = realpath($current_dir);
 $dir = dir($current_dir);
 if($dir === FALSE) {
 	die("ERROR while listing current directory");
@@ -38,41 +37,60 @@ while($filename = $dir->read()) {
 if($conf['debug'] === TRUE) echo "end of listing <br/>";
 
 
+// display with apache listing if header and footer found
+if (
+	array_search("HEADER.html", $list) !== false &&
+	array_search("FOOTER.html", $list) !== false
+) {
+	$url = $base_url . $subdir;
+	header("Location: " . $url);
+	die;
+}
+
+
 // raw data's
 $files_raw_data = array();
 foreach ($list as $filename) {
 	if(!in_array($filename, $exclude)) {
 		$full_filename = $current_dir . "/" . $filename;
-		$realpath = $full_filename;
+		$mtime = null;
+		$size = null;
+		$is_directory = false;
 		$is_link = false;
-		if(is_link($full_filename)) {
-			$is_link = true;
-			$realpath = readlink($full_filename);
-			if(substr($realpath, 0, 1) !== '/') {
-				$full_filename = $current_dir . "/" . $realpath;
-				$realpath = realpath($full_filename);
+		$icon = $conf["default_icon"];
+		$realpath = $full_filename;
+		
+		if(@is_readable($full_filename)) // no clean method check against open_basedir restrictions
+		{
+			if(is_link($full_filename)) {
+				$is_link = true;
+				$realpath = readlink($full_filename);
+				if(substr($realpath, 0, 1) !== '/') { // doesn't start with /, relative symlink
+					$realpath = realpath($full_filename);
+				}
 			}
-		}
+			if(is_dir($realpath)) {
+				$is_directory = TRUE;
+				$icon = $conf["directory_icon"];
+			}
+			else {
+				$is_directory = FALSE;
+				$icon = getIcon($filename);
+			}
 		
-		if(is_dir($realpath)) {
-			$is_directory = TRUE;
-			$icon = $conf["directory_icon"];
+			$stat = stat($full_filename);
+			$mtime = $stat["mtime"];
+			$size = $stat["size"];
 		}
-		else {
-			$is_directory = FALSE;
-			$icon = getIcon($filename);
-		}
-		
-		$stat = stat($full_filename);
-		$files_raw_data[] = array(
+		$files_raw_data [] = [
 			"name" => $filename,
-			"last_modified" => $stat["mtime"],
-			"size" => $stat["size"],
+			"last_modified" => $mtime,
+			"size" => $size,
 			"is_directory" => $is_directory,
 			"is_link" => $is_link,
 			"icon" => $icon,
 			'realpath' => $realpath,
-		);
+		];
 	}
 }
 if($conf['debug'] === TRUE) echo "end of raw datas <br/>";
@@ -97,26 +115,26 @@ if($conf['debug'] === TRUE) echo "end of sorting <br/>";
 $sum_of_files_size = 0;
 $files_formated_data = array();
 foreach ($files_raw_data as $file_raw_data) {
-	$last_modified = date("d/m/Y H:i:s", $file_raw_data["last_modified"]);
+	$last_modified = "";
+	if(!empty($file_raw_data["last_modified"])) {
+		$last_modified = date("d/m/Y H:i:s", $file_raw_data["last_modified"]);
+	}
 	$new_subdir = new_subdir($subdir, $file_raw_data["name"]);
 	if($file_raw_data["is_directory"]) {
 		$icon = '<img src="' . $file_raw_data["icon"] . '" width=32px", height="32px" />';
 	}
 	
-	if($file_raw_data["is_link"]) {
-		$url = $base_url . "/" . $new_subdir;
-		$name = '<a href="' . $url . '">' . '' . $file_raw_data["name"] . '</a>';
-		$size = "";
-	}
-	elseif($file_raw_data["is_directory"]) {
+	if($file_raw_data["is_directory"]) {
 		$name = '<a href="index.php?subdir=' . $new_subdir . '">' . $file_raw_data["name"] . "</a>";
 		$size = "";
 	}
 	else {
 		$icon = '<img src="' . $file_raw_data["icon"].'" width=32px", height="32px" />';
-		$url = $base_url . "/" . $new_subdir;
+		$url = $base_url . $new_subdir;
 		$name = '<a href="' . $url . '">' . '' . $file_raw_data["name"] . '</a>';
-		$size = sizeToString($file_raw_data["size"]);
+		$size = "";
+		if(!empty($file_raw_data["size"]))
+			$size = sizeToString($file_raw_data["size"]);
 		$sum_of_files_size += $file_raw_data["size"];
 	}
 	
