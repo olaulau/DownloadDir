@@ -25,7 +25,7 @@ for($i = count ( $tempPath2 ); $i < count ( $tempPath1 ); $i ++)
 
 $urladdr = $_SERVER ['HTTP_HOST'] . implode ( '/', $tempPath3 );
 
-if ($urladdr {strlen ( $urladdr ) - 1} == '/')
+if ($urladdr [strlen ( $urladdr ) - 1] == '/')
 	define ( 'URLADDR', $_SERVER['REQUEST_SCHEME'] . '://' . $urladdr );
 else
 	define ( 'URLADDR', $_SERVER['REQUEST_SCHEME'] . '://' . $urladdr . '/' );
